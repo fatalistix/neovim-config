@@ -23,3 +23,16 @@ vim.opt.clipboard:append('unnamedplus')
 
 -- allows using <Leader>
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- show some invisible characters (tabs...)
+vim.opt.list = true
+
+-- enable mouse
+vim.opt.mouse = 'a'
+
+-- enables pseudotransparency for popup-menu values from 0 to 100
+vim.opt.pumblend = 10
+
+-- Round indent to multiple of 'shiftwidth'.  Applies to > and < commands.
+vim.opt.shiftround = true
