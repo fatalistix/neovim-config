@@ -3,7 +3,16 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local fatalistix_group = augroup('fatalistix', {})
 local yank_group = augroup('HighlightYank', {})
-local statusline_group = augroup('StatusLine', {})
+
+-- Check if we need to reload the file when it changed
+vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  group = augroup("checktime", {}),
+  callback = function()
+    if vim.o.buftype ~= 'nofile' then
+      vim.cmd('checktime')
+    end
+  end
+})
 
 -- highlight on yank
 autocmd('TextYankPost', {
@@ -51,4 +60,14 @@ autocmd('BufWritePre', {
         end
         vim.lsp.buf.format({ async = false })
     end
+})
+
+-- resize splits if window got resized
+autocmd({ "VimResized" }, {
+  group = augroup("resize_splits", {}),
+  callback = function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd("tabdo wincmd =")
+    vim.cmd("tabnext " .. current_tab)
+  end,
 })
