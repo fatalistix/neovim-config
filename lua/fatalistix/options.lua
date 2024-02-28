@@ -20,3 +20,6 @@ vim.opt.updatetime = 1000
 vim.opt.colorcolumn = '120'
 
 vim.opt.clipboard:append('unnamedplus')
+
+-- allows using <Leader>
+vim.g.mapleader = " "
