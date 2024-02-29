@@ -26,17 +26,19 @@ return {
             completion = {
                 -- options for what is shown in completion suggestion:
                 -- menu - shows a pop up menu with completion suggestion (default)
-                -- menuone - shows a pop up menu wit completion suggestion and selects one (default)
+                -- menuone - shows a pop up menu with completion suggestion and selects one (default)
                 -- preview - allows preview of selected completion without replacing it in buffer
                 -- noinsert - selected will not automatically be inserted into buffer
                 -- noselect - shows a pop up menu with completion suggestion, but does not selects automatically
-                completeopt = "menu,menuone,preview,noinsert"
+                completeopt = "menu,preview,noinsert,noselect"
             },
             mapping = cmp.mapping.preset.insert({
                 -- behavior can be one of:
                 -- cmp.SelectBehavior.Insert: Inserts the text at cursor.
                 -- cmp.SelectBehavior.Select: Only selects the text, potentially adds ghost_text at cursor
                 -- :help cmp.select_next_item
+                ["<tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+                ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
                 ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
                 ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
                 ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -51,7 +53,7 @@ return {
                 -- 2) cmp.ConfirmBehavior.Replace - replaces adjacent text with selected item
                 -- Accept currently selected item. Set `select` to `false`
                 -- to only confirm explicitly selected items
-                ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                ["<CR>"] = cmp.mapping.confirm({ select = false }),
                 -- Accept currently selected item. Set `select` to `false`
                 -- to only confirm explicitly selected items
                 ["<S-CR>"] = cmp.mapping.confirm({
