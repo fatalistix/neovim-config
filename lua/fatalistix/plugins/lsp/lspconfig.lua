@@ -162,7 +162,7 @@ return {
         })
 
         -- https://github.com/rust-lang/rust-analyzer
-        lspconfig["rust_analyzer"].setup({
+        lspconfig["rust-analyzer"].setup({
             on_attach = on_attach,
         })
 
