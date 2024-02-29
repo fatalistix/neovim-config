@@ -1,12 +1,12 @@
 -- используется для быстрого перемещения до отдельно WARN и ERROR
-local diagnostic_goto = function(next, severity)
-    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-    severity = severity and vim.diagnostic.severity[severity] or nil
-    return function()
-        go({ severity = severity })
-    end
-end
-
+-- local diagnostic_goto = function(next, severity)
+--     local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+--     severity = severity and vim.diagnostic.severity[severity] or nil
+--     return function()
+--         go({ severity = severity })
+--     end
+-- end
+--
 -- настройка lsp с помощью lspconfig и cmp-nvim-lsp - простая настройка + добавление новых серверов
 -- https://github.com/neovim/nvim-lspconfig
 -- https://github.com/hrsh7th/cmp-nvim-lsp
@@ -68,29 +68,29 @@ return {
             opts.desc = "Show line's diagnostics"
             vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
-            -- jump to prev diagnostic in buffer
-            opts.desc = "Prev diagnostic"
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
-            -- jump to next diagnostic in buffer
-            opts.desc = "Next diagnostic"
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-
-            -- jump to prev error in buffer
-            opts.desc = "Prev error"
-            vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), opts)
-
-            -- jump to next error in buffer
-            opts.desc = "Next error"
-            vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), opts)
-
-            -- jump to prev warning in buffer
-            opts.desc = "Prev warning"
-            vim.keymap.set("n" ,"[w", diagnostic_goto(false, "WARN"), opts)
-
-            -- jump to next warning in buffer
-            opts.desc = "Next warning"
-            vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), opts)
+            -- -- jump to prev diagnostic in buffer
+            -- opts.desc = "Prev diagnostic"
+            -- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+            --
+            -- -- jump to next diagnostic in buffer
+            -- opts.desc = "Next diagnostic"
+            -- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+            --
+            -- -- jump to prev error in buffer
+            -- opts.desc = "Prev error"
+            -- vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), opts)
+            --
+            -- -- jump to next error in buffer
+            -- opts.desc = "Next error"
+            -- vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), opts)
+            --
+            -- -- jump to prev warning in buffer
+            -- opts.desc = "Prev warning"
+            -- vim.keymap.set("n" ,"[w", diagnostic_goto(false, "WARN"), opts)
+            --
+            -- -- jump to next warning in buffer
+            -- opts.desc = "Next warning"
+            -- vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), opts)
 
             -- show documentation for object under cursor
             opts.desc = "Show documentation for object under cursor"
@@ -105,11 +105,11 @@ return {
         local capabilities = cmp_nvim_lsp.default_capabilities()
 
         -- change the Diagnostic symbols in the sign column (gutter)
-        -- local signs = { Error = "E ", Warn = "W ", Hint = "H ", Info = "I " }
-        -- for type, icon in pairs(signs) do
-        --  local hl = "DiagnosticSign" .. type
-        --  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-        -- end
+        local signs = { Error = " ", Warn  = " ", Hint  = " ", Info  = " ", }
+        for type, icon in pairs(signs) do
+         local hl = "DiagnosticSign" .. type
+         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+        end
 
         -- https://github.com/golang/tools/tree/master/gopls
         lspconfig["gopls"].setup({
@@ -147,10 +147,10 @@ return {
         -- https://clang.llvm.org/docs/ClangCommandLineReference.html
         lspconfig["clangd"].setup({
             on_attach = on_attach,
-            cmd = { 
-                "clangd", 
-                "-log=error", 
-                "--background-index", 
+            cmd = {
+                "clangd",
+                "-log=error",
+                "--background-index",
                 "--limit-results=500",
                 "--completion-style=detailed",
             }
