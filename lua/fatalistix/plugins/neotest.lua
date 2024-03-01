@@ -9,6 +9,7 @@ return {
         "antoinemadec/FixCursorHold.nvim",
         "nvim-lua/plenary.nvim",
         "nvim-neotest/neotest-go",
+        "rouge8/neotest-rust",
     },
     config = function()
         local neotest = require('neotest')

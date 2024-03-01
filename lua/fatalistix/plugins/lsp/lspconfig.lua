@@ -162,9 +162,46 @@ return {
         })
 
         -- https://github.com/rust-lang/rust-analyzer
-        lspconfig["rust-analyzer"].setup({
-            on_attach = on_attach,
-        })
+        -- lspconfig["rust_analyzer"].setup({
+        --     on_attach = on_attach,
+        --     settings = {
+        --         ['rust-analyzer'] = {
+        --             diagnostics = {
+        --                 enable = true,
+        --             }
+        --         }
+        --     }
+        -- })
+        lspconfig["rust_analyzer"].setup{
+            settings = {
+                ["rust-analyzer"] = {
+                    imports = {
+                        granularity = {
+                            group = "module",
+                        },
+                        prefix = "self",
+                    },
+                    cargo = {
+                        allFeatures = true,
+                        loadOutDirsFromCheck = true,
+                        runBuildScripts = true,
+                    },
+                    checkOnSave = {
+                        enable = true,
+                        command = "clippy",
+                        extraArgs = { "--no-deps" },
+                    },
+                    procMacro = {
+                        enable = true,
+                        ignored = {
+                            ["async-trait"] = { "async_trait" },
+                            ["napi-derive"] = { "napi" },
+                            ["async-recursion"] = { "async_recursion" },
+                        },
+                    },
+                },
+            },
+        }
 
         lspconfig["lua_ls"].setup({
             capabilities = capabilities,
