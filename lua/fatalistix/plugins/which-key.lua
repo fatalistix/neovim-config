@@ -22,6 +22,7 @@ return {
             ["<leader>u"] = { name = "+ui" },
             ["<leader>w"] = { name = "+windows" },
             ["<leader>x"] = { name = "+diagnostics/quickfix" },
+            ["<leader>sn"] = { name = "+noice"},
         }
     },
     config = function(_, opts)
