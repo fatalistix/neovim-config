@@ -133,6 +133,7 @@ return {
                         unusedvariable = true,
                         unusedwrite = true,
                         useany = true,
+                        unusedresult = true,
                     },
                     staticcheck = true,
                     hints = {
@@ -191,6 +192,12 @@ return {
                         command = "clippy",
                         extraArgs = { "--no-deps" },
                     },
+                    diagnostics = {
+                        enable = true,
+                        experimental = {
+                            enable = true,
+                        },
+                    },
                     procMacro = {
                         enable = true,
                         ignored = {
@@ -221,6 +228,14 @@ return {
                     }
                 }
             }
+        })
+
+        local htmlCapabilities = vim.lsp.protocol.make_client_capabilities()
+        htmlCapabilities.textDocument.completion.completionItem.snippetSupport = true
+
+        lspconfig["html"].setup({
+            capabilities = htmlCapabilities,
+            on_attach = on_attach,
         })
     end
 }
