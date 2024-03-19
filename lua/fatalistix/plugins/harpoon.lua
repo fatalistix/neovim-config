@@ -1,24 +1,26 @@
--- harpoon (?)
+-- harpoon - buffers marker
 -- https://github.com/ThePrimeagen/harpoon
 return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+        "nvim-lua/plenary.nvim"
+    },
     config = function()
         local harpoon = require("harpoon")
         harpoon:setup()
 
         vim.keymap.set(
             "n",
-            "<leader>a",
+            "<leader>ha",
             function() harpoon:list():append() end,
             { desc = "Harpoon mark buffer" }
         )
         vim.keymap.set(
             "n",
-            "<C-e>",
+            "<leader>hu",
             function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
-            { desc = "Harpoon marks" }
+            { desc = "Harpoon marks (ui)" }
         )
 
         vim.keymap.set(
@@ -59,6 +61,19 @@ return {
             function() harpoon:list():next() end,
             { desc = "Harpoon next mark" }
         )
+        vim.keymap.set(
+            "n",
+            "<leader>h[",
+            function() harpoon:list():prev() end,
+            { desc = "Harpoon prev mark" }
+        )
+        vim.keymap.set(
+            "n",
+            "h]",
+            function() harpoon:list():next() end,
+            { desc = "Harpoon next mark" }
+        )
+
 
         harpoon:extend({
             UI_CREATE = function(cx)
