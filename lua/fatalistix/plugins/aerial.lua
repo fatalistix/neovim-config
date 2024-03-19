@@ -19,8 +19,8 @@ return {
                 -- Прыгаем вперед и назад с помощью фигурных скобок
                 vim.keymap.set("n", "[", aerial.prev, { buffer = bufnr })
                 vim.keymap.set("n", "]", aerial.next, { buffer = bufnr })
-                vim.keymap.set("n", "{", aerial.prev_up, { buffer = bufnr })
-                vim.keymap.set("n", "}", aerial.next_up, { buffer = bufnr })
+                vim.keymap.set("n", "<C-k>", aerial.prev_up, { buffer = bufnr })
+                vim.keymap.set("n", "<C-j>", aerial.next_up, { buffer = bufnr })
             end
         })
 
