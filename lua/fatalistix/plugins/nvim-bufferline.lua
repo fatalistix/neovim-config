@@ -3,7 +3,7 @@
 return {
     'akinsho/bufferline.nvim',
     version = "*",
-    event= "VeryLazy",
+    event = "VeryLazy",
     dependencies = 'nvim-tree/nvim-web-devicons',
     keys = {
         { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
@@ -27,13 +27,19 @@ return {
                     {
                         filetype = "NvimTree",
                         text = "NvimTree",
-                        highlight = "Directory",
                         separator = true,
-                        text_align = "left",
+                        text_align = "center",
+                    },
+                    {
+                        filetype = "aerial",
+                        text = "Aerial",
+                        separator = true,
+                        text_align = "center",
                     }
                 }
             },
         })
+
         -- Fix bufferline when restoring a session
         vim.api.nvim_create_autocmd("BufAdd", {
             callback = function()
