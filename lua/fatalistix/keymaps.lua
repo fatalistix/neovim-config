@@ -5,12 +5,12 @@
 -- vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move Lines
-vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+-- vim.keymap.set("n", "<C-J>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+-- vim.keymap.set("n", "<C-K>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+-- vim.keymap.set("i", "<C-J>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+-- vim.keymap.set("i", "<C-K>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+-- vim.keymap.set("v", "<C-J>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+-- vim.keymap.set("v", "<C-K>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- buffers
 vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
