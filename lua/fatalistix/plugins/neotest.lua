@@ -5,9 +5,14 @@ return {
     "nvim-neotest/neotest",
     event = "LspAttach",
     dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "antoinemadec/FixCursorHold.nvim",
+        -- required by default
+        "nvim-neotest/nvim-nio",
         "nvim-lua/plenary.nvim",
+        "antoinemadec/FixCursorHold.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        -- debug adapter protocol
+        "mfussenegger/nvim-dap",
+        -- language specific dependencies
         "nvim-neotest/neotest-go",
         "rouge8/neotest-rust",
     },
@@ -33,7 +38,7 @@ return {
             neotest.run.run(vim.fn.expand("%"))
         end, { desc = "Neotest current file" })
 
-        vim.keymap.set('n', '<leader>tts', function()
+        vim.keymap.set('n', '<leader>tx', function()
             neotest.run.stop()
         end, { desc = "Neotest stop" })
 
@@ -44,5 +49,13 @@ return {
         vim.keymap.set('n', '<leader>ts', function()
             neotest.summary.toggle()
         end, { desc = "Neotest toggle summary" })
+
+        vim.keymap.set('n', '<leader>td', function()
+            neotest.run.run({ strategy = "dap" })
+        end, { desc = "Neotest debug nearest test" })
+
+        vim.keymap.set('n', '<leader>ta', function()
+            neotest.run.attach()
+        end, { desc = "Neotest attach to nearest test" })
     end
 }
