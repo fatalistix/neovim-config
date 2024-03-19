@@ -12,7 +12,7 @@ return {
 				-- conform применит множество форматтеров последовательно
 				-- чтобы вызвать один из доступных нужно сделать так:
 				-- go = { { "goimports", "gofmt" } }
-				go = { "goimports", "gofmt" },
+				go = { "goimports-reviser", "golines", "gofumpt"},
 				-- Use a sub-list to run only the first available formatter
 				-- javascript = { { "prettierd", "prettier" } },
 				-- You can use a function here to determine the formatters dynamically
