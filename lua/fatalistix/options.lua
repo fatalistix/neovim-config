@@ -36,3 +36,12 @@ vim.opt.pumblend = 10
 
 -- Round indent to multiple of 'shiftwidth'.  Applies to > and < commands.
 vim.opt.shiftround = true
+
+-- every wrapped line will continue visually indented
+-- wrap indent to match line start
+vim.opt.breakindent = true
+
+-- file content encoding for the buffer
+vim.opt.fileencoding = "utf-8"
+
+
