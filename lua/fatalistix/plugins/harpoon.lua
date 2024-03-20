@@ -69,7 +69,7 @@ return {
         )
         vim.keymap.set(
             "n",
-            "h]",
+            "<leader>h]",
             function() harpoon:list():next() end,
             { desc = "Harpoon next mark" }
         )
