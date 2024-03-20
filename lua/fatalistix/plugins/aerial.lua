@@ -14,14 +14,20 @@ return {
             layout = {
                 width = 28,
             },
-            on_attach = function(bufnr)
-                -- Jump forwards/backwards with '{' and '}'
-                -- Прыгаем вперед и назад с помощью фигурных скобок
-                vim.keymap.set("n", "[", aerial.prev, { buffer = bufnr })
-                vim.keymap.set("n", "]", aerial.next, { buffer = bufnr })
-                vim.keymap.set("n", "<C-k>", aerial.prev_up, { buffer = bufnr })
-                vim.keymap.set("n", "<C-j>", aerial.next_up, { buffer = bufnr })
-            end
+            keymaps = {
+                -- ["["] = "actions.prev",
+                -- ["]"] = "actions.nest",
+                ["<C-k>"] = "actions.prev_up",
+                ["<C-j>"] = "actions.next_up",
+            },
+            -- on_attach = function(bufnr)
+            --     -- Jump forwards/backwards with '{' and '}'
+            --     -- Прыгаем вперед и назад с помощью фигурных скобок
+            --     vim.keymap.set("n", "[", aerial.prev, { buffer = bufnr })
+            --     vim.keymap.set("n", "]", aerial.next, { buffer = bufnr })
+            --     vim.keymap.set("n", "<C-k>", aerial.prev_up, { buffer = bufnr })
+            --     vim.keymap.set("n", "<C-j>", aerial.next_up, { buffer = bufnr })
+            -- end
         })
 
         -- Общие комбинации клавиш
