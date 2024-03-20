@@ -14,4 +14,5 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 	{ import = 'fatalistix.plugins' },
 	{ import = 'fatalistix.plugins.lsp' },
+    { import = 'fatalistix.plugins.lang' },
 })
