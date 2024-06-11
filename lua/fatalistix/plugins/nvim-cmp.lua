@@ -74,6 +74,7 @@ return {
                 { name = "path" },
                 { name = "buffer" },
                 { name = "crates" },
+                { name = "codeium" },
             }),
             formatting = {
                 format = lspkind.cmp_format({
@@ -146,11 +147,11 @@ return {
         end
         require("cmp").setup(opts)
 
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics, {
-                -- delay update diagnostics
-                update_in_insert = true,
-            }
-        )
+        -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+        --     vim.lsp.diagnostic.on_publish_diagnostics, {
+        --         -- delay update diagnostics
+        --         update_in_insert = true,
+        --     }
+        -- )
     end,
 }
