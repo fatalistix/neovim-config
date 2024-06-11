@@ -59,7 +59,7 @@ return {
         local builtin = require('telescope.builtin')
 
         telescope.load_extension("fzf")
-
+        telescope.load_extension("aerial")
 
 
         telescope.setup({
@@ -71,17 +71,27 @@ return {
                         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
                     },
                 },
-            },
-            pickers = {
-                buffers = {
-                    sort_mru = true,
-                    mappings = {
-                        i = {
-                            ["<C-d>"] = "delete_buffer",
-                        }
-                    }
-                }
-            }
+           },
+           pickers = {
+               buffers = {
+                   sort_mru = true,
+                   mappings = {
+                       i = {
+                           ["<C-d>"] = "delete_buffer",
+                       }
+                   }
+               }
+           },
+           extensions = {
+               aerial = {
+                   -- Display symbols as <root>.<parent>.<symbol>
+                   show_nesting = {
+                       ["_"] = false, -- This key will be the default
+                       json = true, -- You can set the option for specific filetypes
+                       yaml = true,
+                   }
+               }
+           }
         })
 
 
