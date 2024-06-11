@@ -3,6 +3,7 @@
 return {
     'Saecki/crates.nvim',
     event = { "BufRead Cargo.toml" },
+    enabled = false,
     tag = 'stable',
     opts = {
         src = {
