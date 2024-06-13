@@ -8,12 +8,12 @@ return {
     },
     config = function()
         local harpoon = require("harpoon")
-        harpoon:setup()
+        harpoon:setup({})
 
         vim.keymap.set(
             "n",
             "<leader>ha",
-            function() harpoon:list():append() end,
+            function() harpoon:list():add() end,
             { desc = "Harpoon mark buffer" }
         )
         vim.keymap.set(
