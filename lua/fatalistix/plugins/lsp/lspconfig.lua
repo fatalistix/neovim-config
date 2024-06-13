@@ -34,7 +34,7 @@ return {
 
             -- show defenitions, references
             opts.desc = "Show LSP references"
-            vim.keymap.set("n", "gR", builtin.lsp_references, opts)
+            vim.keymap.set("n", "gr", builtin.lsp_references, opts)
 
             -- go to declaration
             opts.desc = "Go to declaration"
@@ -52,10 +52,6 @@ return {
             opts.desc = "Show LSP type definitions"
             vim.keymap.set("n", "gt", builtin.lsp_type_definitions, opts)
 
-            -- see available code actions
-            -- opts.desc = "See available code actions"
-            -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-
             -- smart rename
             opts.desc = "Smart rename"
             vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
@@ -67,30 +63,6 @@ return {
             -- show buffer diagnostics for line
             opts.desc = "Show line's diagnostics"
             vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-
-            -- -- jump to prev diagnostic in buffer
-            -- opts.desc = "Prev diagnostic"
-            -- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-            --
-            -- -- jump to next diagnostic in buffer
-            -- opts.desc = "Next diagnostic"
-            -- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-            --
-            -- -- jump to prev error in buffer
-            -- opts.desc = "Prev error"
-            -- vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), opts)
-            --
-            -- -- jump to next error in buffer
-            -- opts.desc = "Next error"
-            -- vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), opts)
-            --
-            -- -- jump to prev warning in buffer
-            -- opts.desc = "Prev warning"
-            -- vim.keymap.set("n" ,"[w", diagnostic_goto(false, "WARN"), opts)
-            --
-            -- -- jump to next warning in buffer
-            -- opts.desc = "Next warning"
-            -- vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), opts)
 
             -- show documentation for object under cursor
             opts.desc = "Show documentation for object under cursor"
