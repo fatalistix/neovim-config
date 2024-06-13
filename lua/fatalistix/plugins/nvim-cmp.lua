@@ -15,6 +15,7 @@ return {
         -- set highlight group
         -- https://neovim.io/doc/user/api.html#nvim_set_hl()
         vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+        vim.opt.pumheight = 15
         local cmp = require("cmp")
         local defaults = require("cmp.config.default")()
         local lspkind = require("lspkind")
@@ -88,7 +89,19 @@ return {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
                 end
-            }
+            },
+            window = {
+                completion = {
+                    winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+                    border = "rounded",
+                },
+            },
+            view = {
+                entries = {
+                    name = 'custom',
+                    selection_order = 'near_cursor'
+                }
+            },
         }
     end,
     -- @param opts cmp.ConfigSchema
@@ -97,12 +110,5 @@ return {
             source.group_index = source.group_index or 1
         end
         require("cmp").setup(opts)
-
-        -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-        --     vim.lsp.diagnostic.on_publish_diagnostics, {
-        --         -- delay update diagnostics
-        --         update_in_insert = true,
-        --     }
-        -- )
     end,
 }
