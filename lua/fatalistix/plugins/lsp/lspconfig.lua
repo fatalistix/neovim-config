@@ -53,8 +53,8 @@ return {
             vim.keymap.set("n", "gt", builtin.lsp_type_definitions, opts)
 
             -- see available code actions
-            opts.desc = "See available code actions"
-            vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+            -- opts.desc = "See available code actions"
+            -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
             -- smart rename
             opts.desc = "Smart rename"
