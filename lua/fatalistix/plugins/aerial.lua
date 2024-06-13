@@ -35,6 +35,7 @@ return {
         vim.keymap.set('n', '<leader>ah', function() aerial.toggle({ direction="left" }) end, { desc = "Toggle left" })
         vim.keymap.set('n', '<leader>al', function() aerial.toggle({ direction="right" }) end, { desc = "Toggle right" })
         vim.keymap.set('n', '<leader>af', function() aerial.toggle({ direction="float" }) end, { desc = "Toggle float" })
+        vim.keymap.set('n', '<esc>', function() aerial.close() end, { desc = "Close aerial window" })
         -- Если надо, то toggle можно заменить на open
         -- vim.keymap.set('n', '<leader>ah', function() aerial.open({ direction="left" }) end, { desc = "Toggle left" })
         -- vim.keymap.set('n', '<leader>al', function() aerial.open({ direction="right" }) end, { desc = "Toggle right" })
