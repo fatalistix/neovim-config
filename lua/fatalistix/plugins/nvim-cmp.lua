@@ -10,8 +10,6 @@ return {
         "onsails/lspkind.nvim", -- иконки как в vscode (vs-code like pictograms)
         "L3MON4D3/LuaSnip",   -- движок сниппетов (snippet engine)
         "saadparwaiz1/cmp_luasnip", -- поддержка сниппетов с помощью cmp (for autocompletion)
-        "rafamadriz/friendly-snippets", -- полезные сниппеты (useful snippets)
-        "Saecki/crates.nvim", -- rust crates
     },
     opts = function()
         -- set highlight group
