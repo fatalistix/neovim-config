@@ -45,8 +45,8 @@ return {
             -- Be aware that you also will need to properly configure your LSP server to
             -- provide the inlay hints.
             inlay_hints = {
-                enable = true,
-                exclude = { "vue" },
+                enable = false,
+                -- exclude = { "vue" },
             },
             -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
             -- Be aware that you also will need to properly configure your LSP server to
@@ -74,6 +74,8 @@ return {
     end,
     config = function(_, opts)
         vim.diagnostic.config(opts.diagnostics)
+        -- vim.lsp.inlay_hint.enable(true, opts.inlay_hints)
+
         local lspconfig = require("lspconfig");
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -181,7 +183,10 @@ return {
                             [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
                             [vim.fn.stdpath("config") .. "/lua"] = true,
                         }
-                    }
+                    },
+                    hint = {
+                        enable = true,
+                    },
                 }
             }
         })
@@ -197,6 +202,10 @@ return {
                 "--limit-results=500",
                 "--completion-style=detailed",
             }
+        })
+
+        lspconfig["jdtls"].setup({
+            on_attach = on_attach,
         })
     end
 }
