@@ -13,7 +13,7 @@ vim.opt.termguicolors = true
 vim.opt.cursorline = true
 
 vim.opt.scrolloff = 10
-vim.opt.signcolumn = 'number'
+vim.opt.signcolumn = 'yes:1'
 vim.opt.isfname:append('@-@') -- appends '@' character
 
 vim.opt.updatetime = 1000
@@ -44,4 +44,10 @@ vim.opt.breakindent = true
 -- file content encoding for the buffer
 vim.opt.fileencoding = "utf-8"
 
+-- fold options (arrows in the left)
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.foldcolumn = '1'
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
 
