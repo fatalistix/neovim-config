@@ -30,31 +30,31 @@ return {
             }
         })
 
-        vim.keymap.set('n', '<leader>tt', function()
+        vim.keymap.set('n', '<leader>nt', function()
             neotest.run.run()
         end, { desc = "Neotest run nearest test" })
 
-        vim.keymap.set('n', '<leader>tf', function()
+        vim.keymap.set('n', '<leader>nf', function()
             neotest.run.run(vim.fn.expand("%"))
         end, { desc = "Neotest current file" })
 
-        vim.keymap.set('n', '<leader>tx', function()
+        vim.keymap.set('n', '<leader>nx', function()
             neotest.run.stop()
         end, { desc = "Neotest stop" })
 
-        vim.keymap.set('n', '<leader>to', function()
+        vim.keymap.set('n', '<leader>no', function()
             neotest.output_panel.open()
         end, { desc = "Neotest open output" })
 
-        vim.keymap.set('n', '<leader>ts', function()
+        vim.keymap.set('n', '<leader>ns', function()
             neotest.summary.toggle()
         end, { desc = "Neotest toggle summary" })
 
-        vim.keymap.set('n', '<leader>td', function()
+        vim.keymap.set('n', '<leader>nd', function()
             neotest.run.run({ strategy = "dap" })
         end, { desc = "Neotest debug nearest test" })
 
-        vim.keymap.set('n', '<leader>ta', function()
+        vim.keymap.set('n', '<leader>na', function()
             neotest.run.attach()
         end, { desc = "Neotest attach to nearest test" })
     end
