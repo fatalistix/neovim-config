@@ -3,10 +3,20 @@
 return {
     'ray-x/lsp_signature.nvim',
     event = "VeryLazy",
-    config = function()
-        require('lsp_signature').setup({
-            floating_window = true,
-            hint_prefix = ""
-        })
+    opts = {
+        floating_window = true,
+        hint_prefix = "",
+    },
+    config = function(_, opts)
+        local lsp_signature = require('lsp_signature')
+        lsp_signature.setup(opts)
+
+        vim.keymap.set({ 'n' }, '<C-k>', function()
+            require('lsp_signature').toggle_float_win()
+        end, { silent = true, noremap = true, desc = 'toggle signature' })
+
+        vim.keymap.set({ 'n' }, '<Leader>k', function()
+            vim.lsp.buf.signature_help()
+        end, { silent = true, noremap = true, desc = 'show signature' })
     end
 }
