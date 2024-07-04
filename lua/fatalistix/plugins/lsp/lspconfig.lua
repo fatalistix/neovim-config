@@ -67,16 +67,22 @@ return {
         vim.diagnostic.config(opts.diagnostics)
         -- vim.lsp.inlay_hint.enable(true, opts.inlay_hints)
 
+        -- highlight groups for code lens
+        vim.api.nvim_set_hl(0, 'LspCodeLens', { link = 'WarningMsg', default = true })
+        vim.api.nvim_set_hl(0, 'LspCodeLensText', { link = 'WarningMsg', default = true })
+        vim.api.nvim_set_hl(0, 'LspCodeLensSign', { link = 'WarningMsg', default = true })
+        vim.api.nvim_set_hl(0, 'LspCodeLensSeparator', { link = 'Boolean', default = true })
+
+
         local lspconfig = require("lspconfig");
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-        -- то, что должно быть в opts
-        -- https://neovim.io/doc/user/map.html#%3Amap-arguments
-        local options = {}
 
         -- Функция on_attach используется тут для настройки сочетаний клавиш после того,
         -- как языковой сервер подключается к текущему буферу
         local on_attach = function(_, bufnr)
+            -- то, что должно быть в opts функции map
+            -- https://neovim.io/doc/user/map.html#%3Amap-arguments
+            local options = {}
             options.buffer = bufnr
 
             local builtin = require('telescope.builtin')
