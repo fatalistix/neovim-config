@@ -15,7 +15,7 @@ return {
         -- set highlight group
         -- https://neovim.io/doc/user/api.html#nvim_set_hl()
         vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-        vim.opt.pumheight = 15
+
         local cmp = require("cmp")
         local defaults = require("cmp.config.default")()
         local lspkind = require("lspkind")
@@ -36,12 +36,12 @@ return {
                 -- cmp.SelectBehavior.Insert: Inserts the text at cursor.
                 -- cmp.SelectBehavior.Select: Only selects the text, potentially adds ghost_text at cursor
                 -- :help cmp.select_next_item
-                ["<tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-                ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                ["<tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+                ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
                 ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-                ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-                ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+                ["<C-d>"] = cmp.mapping.scroll_docs(4),
                 ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.abort(),
                 -- If you didn't select any item and the option table contains select = true,
@@ -52,11 +52,14 @@ return {
                 -- 2) cmp.ConfirmBehavior.Replace - replaces adjacent text with selected item
                 -- Accept currently selected item. Set `select` to `false`
                 -- to only confirm explicitly selected items
-                ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                ["<CR>"] = cmp.mapping.confirm({
+                    behavior = cmp.ConfirmBehavior.Replace,
+                    select = true
+                }),
                 -- Accept currently selected item. Set `select` to `false`
                 -- to only confirm explicitly selected items
                 ["<S-CR>"] = cmp.mapping.confirm({
-                    behavior = cmp.ConfirmBehavior.Replace,
+                    -- behavior = cmp.ConfirmBehavior.Replace,
                     select = true,
                 }),
                 ["<C-CR>"] = function(fallback)
@@ -67,11 +70,11 @@ return {
                 end,
             }),
             sources = cmp.config.sources({
-                { name = "nvim_lsp" },
-                { name = "luasnip" },
-                { name = "path" },
-                { name = "buffer" },
-                { name = "codeium" },
+                { name = "nvim_lsp", priority = 100, },
+                { name = "codeium", priority = 90, },
+                { name = "luasnip", priority = 80, },
+                { name = "path", priority = 70, },
+                { name = "buffer", priority = 60, },
             }),
             formatting = {
                 format = lspkind.cmp_format({
