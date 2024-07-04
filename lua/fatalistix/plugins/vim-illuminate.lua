@@ -8,6 +8,12 @@ return {
         large_file_overrides = {
             providers = { "lsp" },
         },
+        filetypes_denylist = {
+            'dirbuf',
+            'dirvish',
+            'fugitive',
+            'NvimTree',
+        },
     },
     config = function(_, opts)
         require("illuminate").configure(opts)
