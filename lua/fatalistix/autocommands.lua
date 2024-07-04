@@ -62,12 +62,10 @@ autocmd('BufWritePre', {
     end
 })
 
--- resize splits if window got resized
-autocmd({ "VimResized" }, {
-    group = augroup("resize_splits", {}),
+-- Code lens auto activation for some events
+autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+    pattern = '*',
     callback = function()
-        local current_tab = vim.fn.tabpagenr()
-        vim.cmd("tabdo wincmd =")
-        vim.cmd("tabnext " .. current_tab)
-    end,
+        vim.lsp.codelens.refresh()
+    end
 })
