@@ -33,6 +33,7 @@ vim.opt.mouse = 'a'
 
 -- enables pseudotransparency for popup-menu values from 0 to 100
 vim.opt.pumblend = 10
+vim.opt.pumheight = 15
 
 -- Round indent to multiple of 'shiftwidth'.  Applies to > and < commands.
 vim.opt.shiftround = true
