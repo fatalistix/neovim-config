@@ -12,5 +12,7 @@ return {
             ),
         }
         require('jdtls').start_or_attach(config)
-    end
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "java", },
 }
