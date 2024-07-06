@@ -1,4 +1,5 @@
 -- фреймворк для проведения тестирования
+-- Testing framework
 -- https://github.com/nvim-neotest/neotest
 -- https://github.com/nvim-neotest/neotest-go
 return {
@@ -43,8 +44,8 @@ return {
         end, { desc = "Neotest stop" })
 
         vim.keymap.set('n', '<leader>no', function()
-            neotest.output_panel.open()
-        end, { desc = "Neotest open output" })
+            neotest.output_panel.toggle()
+        end, { desc = "Neotest toggle output" })
 
         vim.keymap.set('n', '<leader>ns', function()
             neotest.summary.toggle()
