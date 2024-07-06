@@ -8,7 +8,7 @@
 
 -- buffers
 vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-vim.keymap.set("n", "<leader>bD", "<cmd>:bd<cr>", { dssc = "Close buffer and window" })
+vim.keymap.set("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Close buffer and window" })
 vim.keymap.set("n", "<leader>bC", "<cmd>:bd<cr>", { desc = "Close buffer and Window" })
 
 -- Clear search with <esc>
