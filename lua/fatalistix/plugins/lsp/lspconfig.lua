@@ -3,9 +3,9 @@
 -- https://github.com/hrsh7th/cmp-nvim-lsp
 return {
     'neovim/nvim-lspconfig',
-    event = { "BufReadPre", "BufNewFile" },
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
+        'hrsh7th/cmp-nvim-lsp',
     },
     opts = function()
         return {
@@ -17,17 +17,17 @@ return {
                     -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
                     -- prefix = "icons",
                     spacing = 4,
-                    source = "if_many",
-                    prefix = "●",
+                    source = 'if_many',
+                    prefix = '●',
                 },
                 severity_sort = true,
                 -- change the Diagnostic symbols in the sign column (gutter)
                 signs = {
                     text = {
-                        [vim.diagnostic.severity.ERROR] = " ",
-                        [vim.diagnostic.severity.WARN] = " ",
-                        [vim.diagnostic.severity.HINT] = " ",
-                        [vim.diagnostic.severity.INFO] = " ",
+                        [vim.diagnostic.severity.ERROR] = ' ',
+                        [vim.diagnostic.severity.WARN] = ' ',
+                        [vim.diagnostic.severity.HINT] = ' ',
+                        [vim.diagnostic.severity.INFO] = ' ',
                     },
                 },
             },
@@ -46,7 +46,7 @@ return {
             },
             -- Enable lsp cursor word highlighting
             document_highlight = {
-                enable = true
+                enable = true,
             },
             -- options for vim.lsp.buf.format
             format = {
@@ -58,8 +58,7 @@ return {
             -- servers = {
             --
             -- },
-            setup = {
-            },
+            setup = {},
         }
     end,
     config = function(_, opts)
@@ -75,5 +74,5 @@ return {
         require('fatalistix.plugins.lsp.lang').setup()
 
         -- vim.api.nvim_echo({ { vim.inspect( some_long_object) } }, true, {})
-    end
+    end,
 }

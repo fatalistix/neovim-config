@@ -1,5 +1,8 @@
 local function is_buffer_unnamed_and_empty(bufnr)
-    if vim.api.nvim_get_option_value('buflisted', { buf = bufnr }) and not vim.api.nvim_get_option_value('readonly', { buf = bufnr }) then
+    if
+        vim.api.nvim_get_option_value('buflisted', { buf = bufnr })
+        and not vim.api.nvim_get_option_value('readonly', { buf = bufnr })
+    then
         if vim.api.nvim_buf_get_name(bufnr) ~= '' then
             return false -- there is a buffer with a name
         end
@@ -15,43 +18,47 @@ end
 -- https://github.com/akinsho/bufferline.nvim
 return {
     'akinsho/bufferline.nvim',
-    version = "*",
-    event = "VeryLazy",
+    version = '*',
+    event = 'VeryLazy',
     dependencies = 'nvim-tree/nvim-web-devicons',
     keys = {
-        { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
-        { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-        { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
-        { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
-        { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
-        { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-        { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
-        { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-        { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
-        { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
-        { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
+        { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle pin' },
+        { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete non-pinned buffers' },
+        { '<leader>bo', '<Cmd>BufferLineCloseOthers<CR>', desc = 'Delete other buffers' },
+        { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete buffers to the right' },
+        { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete buffers to the left' },
+        { '<S-h>', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev buffer' },
+        { '<S-l>', '<cmd>BufferLineCycleNext<cr>', desc = 'Next buffer' },
+        { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev buffer' },
+        { ']b', '<cmd>BufferLineCycleNext<cr>', desc = 'Next buffer' },
+        { '[B', '<cmd>BufferLineMovePrev<cr>', desc = 'Move buffer prev' },
+        { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move buffer next' },
     },
-    config = function ()
-        require("bufferline").setup({
+    config = function()
+        require('bufferline').setup({
             options = {
-                close_command = function(n) require("mini.bufremove").delete(n, false) end,
-                right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
+                close_command = function(n)
+                    require('mini.bufremove').delete(n, false)
+                end,
+                right_mouse_command = function(n)
+                    require('mini.bufremove').delete(n, false)
+                end,
                 always_show_bufferline = false,
-                separator_style = "slope",
+                separator_style = 'slope',
                 offsets = {
                     {
-                        filetype = "NvimTree",
-                        text = "NvimTree",
+                        filetype = 'NvimTree',
+                        text = 'NvimTree',
                         separator = true,
-                        text_align = "center",
+                        text_align = 'center',
                     },
                     {
-                        filetype = "aerial",
-                        text = "Aerial",
+                        filetype = 'aerial',
+                        text = 'Aerial',
                         separator = true,
-                        text_align = "center",
-                    }
-                }
+                        text_align = 'center',
+                    },
+                },
             },
         })
 
@@ -63,5 +70,5 @@ return {
         --         end)
         --     end,
         -- })
-    end
+    end,
 }

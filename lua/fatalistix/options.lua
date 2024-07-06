@@ -22,8 +22,8 @@ vim.opt.colorcolumn = '120'
 vim.opt.clipboard:append('unnamedplus')
 
 -- allows using <Leader>
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
 
 -- show some invisible characters (tabs...)
 vim.opt.list = true
@@ -43,7 +43,7 @@ vim.opt.shiftround = true
 vim.opt.breakindent = true
 
 -- file content encoding for the buffer
-vim.opt.fileencoding = "utf-8"
+vim.opt.fileencoding = 'utf-8'
 
 -- fold options (arrows in the left)
 vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -51,4 +51,3 @@ vim.opt.foldcolumn = '1'
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
-

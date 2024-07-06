@@ -1,13 +1,13 @@
 -- УВЕДОМЛЕНИЯ
 return {
-    "rcarriga/nvim-notify",
+    'rcarriga/nvim-notify',
     keys = {
         {
-            "<leader>un",
+            '<leader>un',
             function()
-                require("notify").dismiss({ silent = true, pending = true })
+                require('notify').dismiss({ silent = true, pending = true })
             end,
-            desc = "Dismiss all Notifications",
+            desc = 'Dismiss all Notifications',
         },
     },
     opts = {
@@ -23,6 +23,6 @@ return {
         end,
     },
     init = function()
-        vim.notify = require("notify")
+        vim.notify = require('notify')
     end,
 }

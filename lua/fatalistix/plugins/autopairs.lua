@@ -2,12 +2,12 @@
 -- https://github.com/windwp/nvim-autopairs
 return {
     'windwp/nvim-autopairs',
-    event = "InsertEnter",
+    event = 'InsertEnter',
     opts = {
         fast_wrap = {},
-        disable_filetype = { "TelescopePrompt", "vim" },
+        disable_filetype = { 'TelescopePrompt', 'vim' },
     },
-    config = function (_, opts)
-        require("nvim-autopairs").setup(opts)
-    end
+    config = function(_, opts)
+        require('nvim-autopairs').setup(opts)
+    end,
 }

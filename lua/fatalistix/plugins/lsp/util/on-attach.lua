@@ -10,43 +10,42 @@ return function(_, bufnr)
     local builtin = require('telescope.builtin')
 
     -- show defenitions, references
-    options.desc = "Show LSP references"
-    vim.keymap.set("n", "gr", builtin.lsp_references, options)
+    options.desc = 'Show LSP references'
+    vim.keymap.set('n', 'gr', builtin.lsp_references, options)
 
     -- go to declaration
-    options.desc = "Go to declaration"
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, options)
+    options.desc = 'Go to declaration'
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, options)
 
     -- show lsp definitions
-    options.desc = "Show LSP definitions"
-    vim.keymap.set("n", "gd", builtin.lsp_definitions, options)
+    options.desc = 'Show LSP definitions'
+    vim.keymap.set('n', 'gd', builtin.lsp_definitions, options)
 
     -- show lsp implementations
-    options.desc = "Show LSP implementations"
-    vim.keymap.set("n", "gi", builtin.lsp_implementations, options)
+    options.desc = 'Show LSP implementations'
+    vim.keymap.set('n', 'gi', builtin.lsp_implementations, options)
 
     -- show lsp type definitions
-    options.desc = "Show LSP type definitions"
-    vim.keymap.set("n", "gt", builtin.lsp_type_definitions, options)
+    options.desc = 'Show LSP type definitions'
+    vim.keymap.set('n', 'gt', builtin.lsp_type_definitions, options)
 
     -- smart rename
-    options.desc = "Smart rename"
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, options)
+    options.desc = 'Smart rename'
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, options)
 
     -- show buffer diagnostics for file
     options.desc = "Show file's diagnostics"
-    vim.keymap.set("n", "<leader>D", builtin.diagnostics, options)
+    vim.keymap.set('n', '<leader>D', builtin.diagnostics, options)
 
     -- show buffer diagnostics for line
     options.desc = "Show line's diagnostics"
-    vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, options)
+    vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, options)
 
     -- show documentation for object under cursor
-    options.desc = "Show documentation for object under cursor"
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, options)
+    options.desc = 'Show documentation for object under cursor'
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, options)
 
     -- restart lsp
-    options.desc = "Restart LSP"
-    vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", options)
+    options.desc = 'Restart LSP'
+    vim.keymap.set('n', '<leader>rs', ':LspRestart<CR>', options)
 end
-

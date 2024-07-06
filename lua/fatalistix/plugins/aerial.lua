@@ -5,8 +5,8 @@ return {
     opts = {},
     -- Optional dependencies
     dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "nvim-tree/nvim-web-devicons"
+        'nvim-treesitter/nvim-treesitter',
+        'nvim-tree/nvim-web-devicons',
     },
     config = function()
         local aerial = require('aerial')
@@ -17,8 +17,8 @@ return {
             keymaps = {
                 -- ["["] = "actions.prev",
                 -- ["]"] = "actions.nest",
-                ["<C-k>"] = "actions.prev_up",
-                ["<C-j>"] = "actions.next_up",
+                ['<C-k>'] = 'actions.prev_up',
+                ['<C-j>'] = 'actions.next_up',
             },
             -- on_attach = function(bufnr)
             --     -- Jump forwards/backwards with '{' and '}'
@@ -31,14 +31,22 @@ return {
         })
 
         -- Общие комбинации клавиш
-        vim.keymap.set('n', '<leader>ac', aerial.close, { desc = "Close" })
-        vim.keymap.set('n', '<leader>ah', function() aerial.toggle({ direction="left" }) end, { desc = "Toggle left" })
-        vim.keymap.set('n', '<leader>al', function() aerial.toggle({ direction="right" }) end, { desc = "Toggle right" })
-        vim.keymap.set('n', '<leader>af', function() aerial.toggle({ direction="float" }) end, { desc = "Toggle float" })
-        vim.keymap.set('n', '<esc>', function() aerial.close() end, { desc = "Close aerial window" })
+        vim.keymap.set('n', '<leader>ac', aerial.close, { desc = 'Close' })
+        vim.keymap.set('n', '<leader>ah', function()
+            aerial.toggle({ direction = 'left' })
+        end, { desc = 'Toggle left' })
+        vim.keymap.set('n', '<leader>al', function()
+            aerial.toggle({ direction = 'right' })
+        end, { desc = 'Toggle right' })
+        vim.keymap.set('n', '<leader>af', function()
+            aerial.toggle({ direction = 'float' })
+        end, { desc = 'Toggle float' })
+        vim.keymap.set('n', '<esc>', function()
+            aerial.close()
+        end, { desc = 'Close aerial window' })
         -- Если надо, то toggle можно заменить на open
         -- vim.keymap.set('n', '<leader>ah', function() aerial.open({ direction="left" }) end, { desc = "Toggle left" })
         -- vim.keymap.set('n', '<leader>al', function() aerial.open({ direction="right" }) end, { desc = "Toggle right" })
         -- vim.keymap.set('n', '<leader>af', function() aerial.open({ direction="float" }) end, { desc = "Toggle float" })
-    end
+    end,
 }

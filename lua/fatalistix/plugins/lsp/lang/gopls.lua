@@ -1,12 +1,12 @@
 local gopls = {}
 
-local lspconfig = require("lspconfig");
+local lspconfig = require('lspconfig')
 local capabilities = require('fatalistix.plugins.lsp.util.capabilities')
 local on_attach = require('fatalistix.plugins.lsp.util.on-attach')
 
 function gopls.setup()
     -- https://github.com/golang/tools/tree/master/gopls
-    lspconfig["gopls"].setup({
+    lspconfig['gopls'].setup({
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
@@ -33,11 +33,10 @@ function gopls.setup()
                 hints = {
                     assignVariableTypes = true,
                     constantValues = true,
-                }
-            }
-        }
+                },
+            },
+        },
     })
 end
 
 return gopls
-

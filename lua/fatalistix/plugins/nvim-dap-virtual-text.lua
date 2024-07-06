@@ -1,6 +1,6 @@
 -- Всплывающий текст во время дебаггинга
 -- способен показывать текущие значения переменных + причину завершения работы
 return {
-    "theHamsta/nvim-dap-virtual-text",
+    'theHamsta/nvim-dap-virtual-text',
     opts = {},
 }

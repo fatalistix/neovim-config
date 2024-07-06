@@ -2,7 +2,7 @@
 -- https://github.com/Saecki/crates.nvim
 return {
     'Saecki/crates.nvim',
-    event = { "BufRead Cargo.toml" },
+    event = { 'BufRead Cargo.toml' },
     enabled = false,
     tag = 'stable',
     opts = {
