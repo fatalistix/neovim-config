@@ -1,3 +1,16 @@
+local function is_buffer_unnamed_and_empty(bufnr)
+    if vim.api.nvim_get_option_value('buflisted', { buf = bufnr }) and not vim.api.nvim_get_option_value('readonly', { buf = bufnr }) then
+        if vim.api.nvim_buf_get_name(bufnr) ~= '' then
+            return false -- there is a buffer with a name
+        end
+        local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+        if #lines > 1 or (#lines == 1 and #lines[1] > 0) then
+            return false -- there is a buffer with content
+        end
+    end
+    return true -- there are no listed, writable, named, nonempty buffers
+end
+
 -- отображение буфферов (табов) в верхнем горизонтальном меню
 -- https://github.com/akinsho/bufferline.nvim
 return {
@@ -15,6 +28,8 @@ return {
         { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
         { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
         { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+        { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
+        { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
     },
     config = function ()
         require("bufferline").setup({
