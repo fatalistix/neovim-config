@@ -1,9 +1,7 @@
 -- красивые окна
+-- beautiful vim.input + another ui configs
 -- https://github.com/stevearc/dressing.nvim
 return {
     'stevearc/dressing.nvim',
-    lazy = true,
-    config = function()
-        require('dressing').setup({})
-    end,
+    opts = {},
 }
