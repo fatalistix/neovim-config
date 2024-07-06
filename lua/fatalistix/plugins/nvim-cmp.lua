@@ -1,3 +1,9 @@
+local has_words_before = function()
+    unpack = unpack or table.unpack
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 -- nvim-cmp
 -- https://github.com/hrsh7th/nvim-cmp
 return {
@@ -36,13 +42,29 @@ return {
                 -- cmp.SelectBehavior.Insert: Inserts the text at cursor.
                 -- cmp.SelectBehavior.Select: Only selects the text, potentially adds ghost_text at cursor
                 -- :help cmp.select_next_item
-                ["<tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-                ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-                ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-                ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                -- ["<tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+                ["<tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        if #cmp.get_entries() == 1 then
+                            cmp.confirm({ select = true })
+                        else
+                            cmp.select_next_item()
+                        end
+                    elseif has_words_before() then
+                        cmp.complete()
+                        if #cmp.get_entries() == 1 then
+                            cmp.confirm({ select = true })
+                        end
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+                ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+                ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                ["<C-Space>"] = cmp.mapping.complete(),
+                -- ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.abort(),
                 -- If you didn't select any item and the option table contains select = true,
                 -- nvim-cmp will automatically select the first item
@@ -53,21 +75,24 @@ return {
                 -- Accept currently selected item. Set `select` to `false`
                 -- to only confirm explicitly selected items
                 ["<CR>"] = cmp.mapping.confirm({
+                    select = false
+                }),
+                ["<C-l>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Replace,
                     select = true
                 }),
                 -- Accept currently selected item. Set `select` to `false`
                 -- to only confirm explicitly selected items
-                ["<S-CR>"] = cmp.mapping.confirm({
+                -- ["<S-CR>"] = cmp.mapping.confirm({
                     -- behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
-                }),
-                ["<C-CR>"] = function(fallback)
+                    -- select = true,
+                -- }),
+                -- ["<C-CR>"] = function(fallback)
                     -- closes cmp completion menu with restoring the current line to the state before
                     -- the current completion was started.
-                    cmp.abort()
-                    fallback()
-                end,
+                    -- cmp.abort()
+                    -- fallback()
+                -- end,
             }),
             sources = cmp.config.sources({
                 { name = "nvim_lsp", priority = 100, },
@@ -102,7 +127,7 @@ return {
             view = {
                 entries = {
                     name = 'custom',
-                    selection_order = 'near_cursor'
+                    selection_order = 'top_down'
                 }
             },
         }
