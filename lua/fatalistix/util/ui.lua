@@ -44,4 +44,14 @@ function M.bufremove(buf)
     end
 end
 
+M.rainbowHighlight = {
+    'RainbowRed',
+    'RainbowYellow',
+    'RainbowBlue',
+    'RainbowOrange',
+    'RainbowGreen',
+    'RainbowViolet',
+    'RainbowCyan',
+}
+
 return M
