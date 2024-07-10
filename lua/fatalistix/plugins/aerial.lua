@@ -2,33 +2,48 @@
 -- https://github.com/stevearc/aerial.nvim
 return {
     'stevearc/aerial.nvim',
-    opts = {},
     -- Optional dependencies
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
         'nvim-tree/nvim-web-devicons',
     },
-    config = function()
+    opts = {
+        attach_mode = 'global',
+        backends = { 'lsp', 'treesitter', 'markdown', 'man' },
+        layout = { min_width = 28 },
+        show_guides = true,
+        filter_kind = false,
+        guides = {
+            mid_item = '├ ',
+            last_item = '└ ',
+            nested_top = '│ ',
+            whitespace = '  ',
+        },
+        keymaps = {
+            ['[y'] = 'actions.prev',
+            [']y'] = 'actions.next',
+            ['[Y'] = 'actions.prev_up',
+            [']Y'] = 'actions.next_up',
+            ['<C-k>'] = 'actions.prev_up',
+            ['<C-j>'] = 'actions.next_up',
+            -- ['{'] = false,
+            -- ['}'] = false,
+            -- ['[['] = false,
+            -- [']]'] = falset,
+        },
+        -- on_attach = function(bufnr)
+        --     -- Jump forwards/backwards with '{' and '}'
+        --     -- Прыгаем вперед и назад с помощью фигурных скобок
+        --     vim.keymap.set("n", "[", aerial.prev, { buffer = bufnr })
+        --     vim.keymap.set("n", "]", aerial.next, { buffer = bufnr })
+        --     vim.keymap.set("n", "<C-k>", aerial.prev_up, { buffer = bufnr })
+        --     vim.keymap.set("n", "<C-j>", aerial.next_up, { buffer = bufnr })
+        -- end
+    },
+
+    config = function(_, opts)
         local aerial = require('aerial')
-        aerial.setup({
-            layout = {
-                width = 28,
-            },
-            keymaps = {
-                -- ["["] = "actions.prev",
-                -- ["]"] = "actions.nest",
-                ['<C-k>'] = 'actions.prev_up',
-                ['<C-j>'] = 'actions.next_up',
-            },
-            -- on_attach = function(bufnr)
-            --     -- Jump forwards/backwards with '{' and '}'
-            --     -- Прыгаем вперед и назад с помощью фигурных скобок
-            --     vim.keymap.set("n", "[", aerial.prev, { buffer = bufnr })
-            --     vim.keymap.set("n", "]", aerial.next, { buffer = bufnr })
-            --     vim.keymap.set("n", "<C-k>", aerial.prev_up, { buffer = bufnr })
-            --     vim.keymap.set("n", "<C-j>", aerial.next_up, { buffer = bufnr })
-            -- end
-        })
+        aerial.setup(opts)
 
         -- Общие комбинации клавиш
         vim.keymap.set('n', '<leader>ac', aerial.close, { desc = 'Close' })
