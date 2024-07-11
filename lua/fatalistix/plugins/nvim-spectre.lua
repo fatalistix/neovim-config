@@ -34,7 +34,7 @@ return {
             mode = 'v',
         },
         {
-            '<leader>srp',
+            '<leader>srf',
             function()
                 require('spectre').open_file_search({ select_word = true })
             end,
