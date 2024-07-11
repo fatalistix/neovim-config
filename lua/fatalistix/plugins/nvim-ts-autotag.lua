@@ -2,9 +2,7 @@
 return {
     'windwp/nvim-ts-autotag',
     event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
-    config = function()
-        require('nvim-ts-autotag').setup({
-            filetypes = { 'html', 'xml' },
-        })
-    end,
+    opts = {
+        filetypes = { 'html', 'xml' },
+    },
 }
