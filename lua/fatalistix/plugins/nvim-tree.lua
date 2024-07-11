@@ -96,10 +96,10 @@ return {
         require('nvim-tree').setup(opts)
 
         -- keys section doesn't work for this plugin
-        vim.keymap.set('n', '<leader>e', '<Cmd>NvimTreeToggle<CR>', { desc = 'Open nvim-tree' })
+        vim.keymap.set('n', '<leader>e', '<Cmd>NvimTreeToggle<CR>', { desc = 'Open nvim-tree and focus' })
         vim.keymap.set('n', '<leader>E', function()
             require('nvim-tree.api').tree.toggle({ silent = true, focus = false })
-        end, { desc = 'Open nvim-tree' })
+        end, { desc = 'Open nvim-tree without focus' })
 
         -- Make :bd and :q behave as usual when tree is visible
         vim.api.nvim_create_autocmd({ 'BufEnter', 'QuitPre' }, {
