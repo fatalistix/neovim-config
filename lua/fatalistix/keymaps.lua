@@ -29,29 +29,7 @@ vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 -- new file
 vim.keymap.set('n', '<leader>fn', '<cmd>enew<cr>', { desc = 'New file' })
 
--- diagnostic
-vim.keymap.set('n', '<leader>cl', '<cmd>lopen<cr>', { desc = 'Location list' })
-vim.keymap.set('n', '<leader>cq', '<cmd>copen<cr>', { desc = 'Quickfix list' })
-vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Line diagnostics' })
-
-vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
-vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix' })
-
-local diagnostic_goto = function(next, severity)
-    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-    severity = severity and vim.diagnostic.severity[severity] or nil
-    return function()
-        go({ severity = severity })
-    end
-end
-vim.keymap.set('n', ']d', diagnostic_goto(true), { desc = 'Next diagnostic' })
-vim.keymap.set('n', '[d', diagnostic_goto(false), { desc = 'Prev diagnostic' })
-vim.keymap.set('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next error' })
-vim.keymap.set('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev error' })
-vim.keymap.set('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next warning' })
-vim.keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev warning' })
-
--- Terminal Mappings
+-- terminal mappings
 vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>', { desc = 'Enter normal mode' })
 -- vim.keymap.set('t', '<C-h>', '<cmd>wincmd h<cr>', { desc = 'Go to left window' })
 -- vim.keymap.set('t', '<C-j>', '<cmd>wincmd j<cr>', { desc = 'Go to lower window' })

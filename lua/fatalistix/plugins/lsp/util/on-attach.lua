@@ -31,15 +31,15 @@ return function(_, bufnr)
 
     -- smart rename
     options.desc = 'Smart rename'
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, options)
+    vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, options)
 
     -- show buffer diagnostics for file
-    options.desc = "Show file's diagnostics"
-    vim.keymap.set('n', '<leader>D', builtin.diagnostics, options)
+    options.desc = "Show file's diagnostics in telescope"
+    vim.keymap.set('n', '<leader>cD', builtin.diagnostics, options)
 
     -- show buffer diagnostics for line
-    options.desc = "Show line's diagnostics"
-    vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, options)
+    options.desc = "Show line's diagnostics as float"
+    vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, options)
 
     -- show documentation for object under cursor
     options.desc = 'Show documentation for object under cursor'
@@ -48,4 +48,40 @@ return function(_, bufnr)
     -- restart lsp
     options.desc = 'Restart LSP'
     vim.keymap.set('n', '<leader>rs', ':LspRestart<CR>', options)
+
+    -- location list
+    options.desc = 'Location list'
+    vim.keymap.set('n', '<leader>cl', '<cmd>lopen<cr>', options)
+
+    -- quickfix list
+    options.desc = 'Quickfix list'
+    vim.keymap.set('n', '<leader>cq', '<cmd>copen<cr>', options)
+
+    -- next and previous quickfix
+    options.desc = 'Previous quickfix'
+    vim.keymap.set('n', '[q', vim.cmd.cprev, options)
+    options.desc = 'Next quickfix'
+    vim.keymap.set('n', ']q', vim.cmd.cnext, options)
+
+    local diagnostic_goto = function(next, severity)
+        local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+        severity = severity and vim.diagnostic.severity[severity] or nil
+        return function()
+            go({ severity = severity })
+        end
+    end
+
+    -- next diagnostic/error/warning
+    options.desc = 'Next diagnostic'
+    vim.keymap.set('n', ']d', diagnostic_goto(true), options)
+    options.desc = 'Prev diagnostic'
+    vim.keymap.set('n', '[d', diagnostic_goto(false), options)
+    options.desc = 'Next error'
+    vim.keymap.set('n', ']e', diagnostic_goto(true, 'ERROR'), options)
+    options.desc = 'Prev error'
+    vim.keymap.set('n', '[e', diagnostic_goto(false, 'ERROR'), options)
+    options.desc = 'Next warning'
+    vim.keymap.set('n', ']w', diagnostic_goto(true, 'WARN'), options)
+    options.desc = 'Prev warning'
+    vim.keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), options)
 end
