@@ -11,8 +11,12 @@ return {
         local lsp_signature = require('lsp_signature')
         lsp_signature.setup(opts)
 
-        vim.keymap.set({ 'n' }, '<Leader>k', function()
-            require('lsp_signature').toggle_float_win()
-        end, { silent = true, noremap = true, desc = 'toggle signature' })
+        vim.keymap.set('n', '<Leader>k', function()
+            lsp_signature.toggle_float_win()
+        end, { silent = true, noremap = true, desc = 'Toggle signature' })
+
+        vim.keymap.set({ 'n', 'i' }, '<C-s>', function()
+            lsp_signature.toggle_float_win()
+        end, { silent = true, noremap = true, desc = 'Toggle signature' })
     end,
 }
