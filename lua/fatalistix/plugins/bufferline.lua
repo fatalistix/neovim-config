@@ -20,7 +20,35 @@ return {
     'akinsho/bufferline.nvim',
     version = '*',
     event = 'VeryLazy',
-    dependencies = 'nvim-tree/nvim-web-devicons',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+        options = {
+            close_command = function(n)
+                require('mini.bufremove').delete(n, false)
+            end,
+            right_mouse_command = function(n)
+                require('mini.bufremove').delete(n, false)
+            end,
+            always_show_bufferline = false,
+            separator_style = 'slope',
+            offsets = {
+                {
+                    filetype = 'NvimTree',
+                    text = 'NvimTree',
+                    separator = true,
+                    text_align = 'center',
+                },
+                {
+                    filetype = 'aerial',
+                    text = 'Aerial',
+                    separator = true,
+                    text_align = 'center',
+                },
+            },
+        },
+    },
     keys = {
         { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle pin' },
         { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete non-pinned buffers' },
@@ -34,41 +62,16 @@ return {
         { '[B', '<cmd>BufferLineMovePrev<cr>', desc = 'Move buffer prev' },
         { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move buffer next' },
     },
-    config = function()
-        require('bufferline').setup({
-            options = {
-                close_command = function(n)
-                    require('mini.bufremove').delete(n, false)
-                end,
-                right_mouse_command = function(n)
-                    require('mini.bufremove').delete(n, false)
-                end,
-                always_show_bufferline = false,
-                separator_style = 'slope',
-                offsets = {
-                    {
-                        filetype = 'NvimTree',
-                        text = 'NvimTree',
-                        separator = true,
-                        text_align = 'center',
-                    },
-                    {
-                        filetype = 'aerial',
-                        text = 'Aerial',
-                        separator = true,
-                        text_align = 'center',
-                    },
-                },
-            },
-        })
+    config = function(_, opts)
+        require('bufferline').setup(opts)
 
         -- Fix bufferline when restoring a session
-        -- vim.api.nvim_create_autocmd("BufAdd", {
-        --     callback = function()
-        --         vim.schedule(function()
-        --             pcall(nvim_bufferline)
-        --         end)
-        --     end,
-        -- })
+        vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete' }, {
+            callback = function()
+                vim.schedule(function()
+                    pcall(nvim_bufferline)
+                end)
+            end,
+        })
     end,
 }
