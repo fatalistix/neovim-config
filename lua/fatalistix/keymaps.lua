@@ -18,7 +18,7 @@ vim.keymap.set({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and 
 -- taken from runtime/lua/_editor.lua
 vim.keymap.set(
     'n',
-    '<leader>ur',
+    '<leader>or',
     '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>',
     { desc = 'Redraw / clear hlsearch / diff update' }
 )
