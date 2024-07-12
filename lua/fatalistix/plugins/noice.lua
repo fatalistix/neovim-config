@@ -52,14 +52,14 @@ return {
             function()
                 require('noice').cmd('dismiss')
             end,
-            desc = 'Dismiss All',
+            desc = 'Dismiss all',
         },
         {
             '<leader>snt',
             function()
                 require('noice').cmd('pick')
             end,
-            desc = 'Noice Picker (Telescope/FzfLua)',
+            desc = 'Noice picker (Telescope/FzfLua)',
         },
     },
     config = function(_, opts)
