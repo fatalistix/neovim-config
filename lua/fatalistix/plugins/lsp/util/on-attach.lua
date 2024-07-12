@@ -47,7 +47,7 @@ return function(_, bufnr)
 
     -- restart lsp
     options.desc = 'Restart LSP'
-    vim.keymap.set('n', '<leader>rs', ':LspRestart<CR>', options)
+    vim.keymap.set('n', '<leader>cc', ':LspRestart<CR>', options)
 
     -- location list
     options.desc = 'Location list'
