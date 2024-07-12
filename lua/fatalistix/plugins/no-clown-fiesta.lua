@@ -28,6 +28,35 @@ end
 
 local setup_lualine = function()
     local palette = require('no-clown-fiesta.palette')
+    local lualine = require('lualine')
+
+    local config = lualine.get_config()
+
+    local theme = {
+        normal = {
+            a = { fg = palette.bg, bg = palette.purple, gui = 'bold' },
+            b = { fg = palette.white, bg = palette.gray },
+            c = { fg = palette.white, bg = palette.accent },
+        },
+
+        insert = { a = { fg = palette.bg, bg = palette.blue, gui = 'bold' } },
+        visual = { a = { fg = palette.bg, bg = palette.cyan, gui = 'bold' } },
+        command = { a = { fg = palette.bg, bg = palette.yellow, gui = 'bold' } },
+        replace = { a = { fg = palette.bg, bg = palette.red, gui = 'bold' } },
+
+        inactive = {
+            a = { fg = palette.bg, bg = palette.gray_blue },
+            b = { fg = palette.white, bg = palette.accent },
+            c = { fg = palette.white, bg = palette.accent },
+            x = { fg = palette.white, bg = palette.accent },
+            y = { fg = palette.white, bg = palette.accent },
+            z = { fg = palette.bg, bg = palette.gray_blue },
+        },
+    }
+
+    config.options.theme = theme
+
+    lualine.setup(config)
 end
 
 -- highlight NotifyERRORBorder guifg=#8A1F1F
