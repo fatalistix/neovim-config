@@ -15,6 +15,13 @@ return {
             desc = 'Restore session',
         },
         {
+            '<leader>qS',
+            function()
+                require('persistence').select()
+            end,
+            desc = 'Select a session to load',
+        },
+        {
             '<leader>ql',
             function()
                 require('persistence').load({ last = true })
@@ -27,6 +34,20 @@ return {
                 require('persistence').stop()
             end,
             desc = "Don't save current session",
+        },
+        {
+            '<leader>qw',
+            function()
+                require('persistence').save()
+            end,
+            desc = 'Save session',
+        },
+        {
+            '<leader>qW',
+            function()
+                require('persistence').start()
+            end,
+            desc = 'Start session autosaving',
         },
     },
 }
