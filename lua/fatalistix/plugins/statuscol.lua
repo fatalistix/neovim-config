@@ -1,9 +1,10 @@
 -- better statuses line (which is lefter than numbers)
 return {
     'luukvbaal/statuscol.nvim',
-    config = function()
+    opts = function()
         local builtin = require('statuscol.builtin')
-        require('statuscol').setup({
+
+        return {
             segments = {
                 { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
                 { text = { '%s' }, click = 'v:lua.ScSa' },
@@ -13,6 +14,6 @@ return {
                     click = 'v:lua.ScLa',
                 },
             },
-        })
+        }
     end,
 }
