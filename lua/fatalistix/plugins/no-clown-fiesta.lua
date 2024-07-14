@@ -104,7 +104,26 @@ local setup_nvim_notify = function()
     vim.api.nvim_set_hl(0, 'NotifyTRACETitle', { fg = palette.blue })
 end
 
+-- hl-groups can have any name
+-- SymbolUsageRef
+-- SymbolUsageRefRound
+-- SymbolUsageDef
+-- SymbolUsageDefRound
+-- SymbolUsageImpl
+-- SymbolUsageImplRound
+local setup_symbol_usage = function()
+    local palette = require('no-clown-fiesta.palette')
+
+    vim.api.nvim_set_hl(0, 'SymbolUsageRef', { bg = palette.cyan, fg = palette.bg })
+    vim.api.nvim_set_hl(0, 'SymbolUsageRefRound', { fg = palette.cyan })
+    vim.api.nvim_set_hl(0, 'SymbolUsageDef', { bg = palette.orange, fg = palette.bg })
+    vim.api.nvim_set_hl(0, 'SymbolUsageDefRound', { fg = palette.orange })
+    vim.api.nvim_set_hl(0, 'SymbolUsageImpl', { bg = palette.yellow, fg = palette.bg })
+    vim.api.nvim_set_hl(0, 'SymbolUsageImplRound', { fg = palette.yellow })
+end
+
 -- цветовая схема
+-- colorscheme
 -- https://github.com/aktersnurra/no-clown-fiest.nvim
 return {
     'aktersnurra/no-clown-fiesta.nvim',
@@ -117,5 +136,6 @@ return {
         setup_indent_blackline()
         setup_lualine()
         setup_nvim_notify()
+        setup_symbol_usage()
     end,
 }
