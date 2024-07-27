@@ -40,7 +40,8 @@ vim.keymap.set('t', '<c-_>', '<cmd>close<cr>', { desc = 'Ignore which-key' })
 
 -- windows
 vim.keymap.set('n', '<leader>ww', '<C-W>p', { desc = 'Other window', remap = true })
-vim.keymap.set('n', '<leader>wd', '<C-W>c', { desc = 'Delete window', remap = true })
+vim.keymap.set('n', '<leader>wd', '<C-W>c', { desc = 'Delete/Close window', remap = true })
+vim.keymap.set('n', '<leader>wc', '<C-W>c', { desc = 'Delete/Close window', remap = true })
 vim.keymap.set('n', '<leader>w-', '<C-W>s', { desc = 'Split window below', remap = true })
 vim.keymap.set('n', '<leader>w|', '<C-W>v', { desc = 'Split window right', remap = true })
 vim.keymap.set('n', '<leader>-', '<C-W>s', { desc = 'Split window below', remap = true })
