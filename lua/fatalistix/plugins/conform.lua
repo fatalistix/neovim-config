@@ -27,6 +27,8 @@ return {
             -- Use the "_" filetype to run formatters on filetypes that don't
             -- have other formatters configured.
             -- ["_"] = { "trim_whitespace" },
+            c = { 'clang-format' },
+            cpp = { 'clang-format' },
         },
         -- If this is set, Conform will run the formatter on save.
         -- It will pass the table to conform.format().
@@ -48,7 +50,12 @@ return {
         notify_on_error = true,
         -- Custom formatters and changes to built-in formatters
         -- Больше информации на github странице разработчика
-        formatters = {},
+        formatters = {
+            ['clang-format'] = {
+                command = 'clang-format',
+                args = '--style="{UseTab: Always, IndentWidth: 4, TabWidth: 4}"',
+            },
+        },
     },
     config = function(_, opts)
         -- Можно поставить formatters_by_ft и formatters напрямую
