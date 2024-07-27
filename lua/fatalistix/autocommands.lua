@@ -63,9 +63,9 @@ autocmd('BufEnter', {
 -- })
 
 -- Code lens auto activation for some events
-autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-    pattern = '*',
-    callback = function()
-        vim.lsp.codelens.refresh()
-    end,
-})
+-- autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+--     pattern = '*',
+--     callback = function()
+--         vim.lsp.codelens.refresh()
+--     end,
+-- })
